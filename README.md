@@ -1,8 +1,8 @@
 # 100-days-of-devops
 
 ## Description
-Doing various tasks to improve myself knowledge and experience in DevOps
-100 days (can be 7 days off)
+Doing various tasks to improve myself knowledge and experience in DevOps  
+100 days (can be 7 days off)  
  - Start from 11 Jan 2023
  - Stop at 28 Apr 2023
 
