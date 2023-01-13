@@ -5,7 +5,9 @@
       ```   
       size of directory:  
       ```
-      du -hs  
+      du -hs
+      ```
+      ```  
       du -h --max-depth=1 {path to dir} | sort -hr   
       ```
 
