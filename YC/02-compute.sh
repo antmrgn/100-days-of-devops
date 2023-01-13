@@ -61,3 +61,36 @@ yc compute instance create \
   --cores 2 \
   --core-fraction 20 \
   --preemptible
+
+# change the VM configuration (only on stopped VM)
+yc compute instance update \
+  --name ubuntu-22-04 \
+  --memory 4
+  
+# create disk
+yc compute disk create \
+  --name data-disk \
+  --size 5 \
+  --type network-hdd \
+  --description 'disk by cli'
+
+# get list of disks
+yc compute disk list --format json
+
+# get info about disk
+yc compute disk get --name data-disk
+
+# attach disk to VM
+yc compute instance attach-disk \
+  --name ubuntu-22-04 \
+  --disk-name data-disk \
+  --auto-delete	
+
+# change disk size
+# firstly detach the disk
+yc compute instance detach-disk \
+  --name ubuntu-22-04 \
+  --disk-name data-disk
+yc compute disk resize \
+  --name data-disk \
+  --size 8
