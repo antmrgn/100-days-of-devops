@@ -16,7 +16,7 @@ yc compute instance create \
 
 #####
 # Default distrib is Ubuntu 18.04
-# connetc to VM via ssh: ssh yc-user@{VM_IP} -i {PATH_TO_PRIVATE_KEY}
+# connect to VM via ssh: ssh yc-user@{VM_IP} -i {PATH_TO_PRIVATE_KEY}
 ##### 
 
 # get list virtual machines
