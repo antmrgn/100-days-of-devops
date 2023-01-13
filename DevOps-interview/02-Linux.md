@@ -4,3 +4,5 @@
       size of directory  
       du -hs  
       du -h --max-depth=1 | sort -hr   
+
+2. 
