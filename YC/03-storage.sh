@@ -16,3 +16,7 @@ yc storage bucket list
 yc storage bucket get my-first-bucket-by-cli
 
 # upload file using AWS cli
+# but before create service account and create static access key
+# create a service account
+yc iam service-account create --name my-service-account \
+  --description "this is my service account"
