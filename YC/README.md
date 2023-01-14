@@ -1,6 +1,6 @@
 ## Yandex Cloud
 
-Create VMs, networks, k8s clusters using cli
+Create VMs, networks, s3 storage, k8s clusters using cli
 
 #### Installiation Yandex Cloud CLI (ubuntu 20.04)
 
