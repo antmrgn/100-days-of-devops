@@ -25,14 +25,16 @@ yc storage bucket get my-first-bucket-by-cli
 # create a service account
 yc iam service-account create --name my-service-account \
   --description "this is my service account"
-# assigning roles to a service account
-yc <service-name> <resource> add-access-binding <resource-name>|<resource-id> \
-  --role <role-id> \
-  --subject serviceAccount:<service-account-id>
-storage.viewer
-storage.uploader
+# get list of roles
+yc iam role list
+# assigning roles to service account
+yc iam service-account set-access-bindings my-service-account \
+  --access-binding role=storage.uploader,subject=serviceAccount:ajedlav2drium5si0p21 \
+  --access-binding role=storage.viewer,subject=serviceAccount:ajedlav2drium5si0p21
+# show roles of service account
+yc iam service-account list-access-bindings my-service-account
 # create static key
 yc iam access-key create --service-account-name my-service-account \
   --description "this key is for my bucket"
-# infroramtion from preveous command needed for configure AWS CLI
+# infroramtion from previous command needed for configure AWS CLI
 # 
