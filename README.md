@@ -11,7 +11,7 @@ Doing various tasks to improve myself knowledge and experience in DevOps
 
 #### Yandex Cloud
 
-Create VMs, networks, k8s clusters using cli
+Create VMs, networks, s3 storage, k8s clusters using cli
 
 #### Terraform
 
