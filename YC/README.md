@@ -8,5 +8,5 @@ Create VMs, networks, s3 storage, k8s clusters using cli
 
 ```bash
 curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-source "/home/morgenshtern/.bashrc"
+source "/home/antmrgn/.bashrc"
 ```
