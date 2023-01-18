@@ -19,8 +19,8 @@ Use Terraform to deploy infrastracture in Yandex Cloud
 
 #### k8s
 
-Deploy containers in YC
+Deploy containers in YC k8s
 
 #### Python
 
-Create app for check available amount in https://meal.gift-cards.ru/balance through telegram bot
+Create app for check available amount in https://meal.gift-cards.ru/balance via telegram bot
