@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: antmrgn
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB35crUX5GwqQ== morgenshtern@SMRNBW145B4HJ
