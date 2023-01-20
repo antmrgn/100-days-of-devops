@@ -45,7 +45,7 @@ resource "yandex_compute_instance" "vm-by-terraform-2-ubuntu" {
 
   resources {
     cores  = 2
-    memory = 4
+    memory = 2
   }
 
   boot_disk {
@@ -65,7 +65,9 @@ resource "yandex_compute_instance" "vm-by-terraform-2-ubuntu" {
   
   scheduling_policy {
     preemptible = true
-  }  
+  }
+  
+  allow_stopping_for_update = true
 }
 
 resource "yandex_vpc_network" "network-by-terraform" {
