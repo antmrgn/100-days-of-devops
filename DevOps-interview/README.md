@@ -13,3 +13,7 @@
 
 Вопросы касательно Linux  
 
+#### 03-IaC.md
+
+Вопросы по инструментам IaC (infrastructure as code)
+
