@@ -1,4 +1,4 @@
-**Q:** Ansible. What is the difference between ansible playbook and roles?
+**Q:** Ansible. What is the difference between ansible playbook and roles?  
 **A:** Playbook - это файл сценария (yaml), который содержит все задачи, которые необходимо выполнить, а также все import_playbook, необходимые для выполнения этих задач. Role содержит определенные var-файлы, задачи и обработчики, которые располагаются по известной файловой структуре  
 
 **Q:**  
