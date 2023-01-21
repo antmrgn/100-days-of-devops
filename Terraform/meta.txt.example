@@ -5,4 +5,4 @@ users:
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh_authorized_keys:
-      - ssh-rsa AAAAB35crUX5GwqQ== morgenshtern@SMRNBW145B4HJ
+      - ssh-rsa AAAAB35crUX5GwqQ== antmrgn@SMRNBW145B4HJ

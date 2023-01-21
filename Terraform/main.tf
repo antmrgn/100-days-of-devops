@@ -44,14 +44,20 @@ resource "yandex_compute_instance" "vm-by-terraform-2-ubuntu" {
   name = "vm-by-terraform-2-ubuntu"
 
   resources {
-    cores  = 2
-    memory = 2
+    cores         = 2
+    memory        = 2
+    core_fraction = 20
   }
 
   boot_disk {
     initialize_params {
       image_id = "fd8b24tqvq7t2f8a1o1s"
+      size     = 17
     }
+  }
+
+  secondary_disk {
+    disk_id = yandex_compute_disk.empty-disk.id
   }
 
   network_interface {
@@ -62,12 +68,20 @@ resource "yandex_compute_instance" "vm-by-terraform-2-ubuntu" {
   metadata = {
     user-data = "${file("./meta.txt")}"
   }
-  
+
   scheduling_policy {
     preemptible = true
   }
-  
+
   allow_stopping_for_update = true
+}
+
+resource "yandex_compute_disk" "empty-disk" {
+  name       = "empty-disk"
+  type       = "network-hdd"
+  zone       = "ru-central1-a"
+  size       = 8
+  block_size = 4096
 }
 
 resource "yandex_vpc_network" "network-by-terraform" {
