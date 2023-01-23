@@ -143,3 +143,44 @@ resource "yandex_storage_bucket" "test" {
   secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
   bucket     = "bucket-via-terraform"
 }
+
+// create k8s cluster
+resource "yandex_kubernetes_cluster" "k8s-cluster-via-terraform" {
+ network_id = yandex_vpc_network.network-by-terraform.id
+ master {
+   zonal {
+     zone      = yandex_vpc_subnet.subnet-by-terraform.zone
+     subnet_id = yandex_vpc_subnet.subnet-by-terraform.id
+   }
+ }
+ service_account_id      = yandex_iam_service_account.sa-k8s.id
+ node_service_account_id = yandex_iam_service_account.sa-k8s.id
+   depends_on = [
+     yandex_resourcemanager_folder_iam_binding.editor,
+     yandex_resourcemanager_folder_iam_binding.images-puller
+   ]
+}
+
+// create account for k8s cluster
+resource "yandex_iam_service_account" "sa-k8s" {
+ name        = "sa-k8s"
+ description = "sa for k8s cluster"
+}
+
+// add role to sa
+resource "yandex_resourcemanager_folder_iam_binding" "editor" {
+ folder_id = "b1g842fiiub76pl0ubak"
+ role      = "editor"
+ members   = [
+   "serviceAccount:${yandex_iam_service_account.sa-k8s.id}"
+ ]
+}
+
+// add role to sa
+resource "yandex_resourcemanager_folder_iam_binding" "images-puller" {
+ folder_id = "b1g842fiiub76pl0ubak"
+ role      = "container-registry.images.puller"
+ members   = [
+   "serviceAccount:${yandex_iam_service_account.sa-k8s.id}"
+ ]
+}
