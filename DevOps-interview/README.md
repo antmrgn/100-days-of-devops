@@ -15,8 +15,12 @@
 
 #### 03-IaC.md
 
-Вопросы по инструментам IaC (infrastructure as code)
+Вопросы по инструментам IaC (infrastructure as code)  
 
 #### 04-VCS.md
 
 Вопросы по VCS (Version Control System)  
+
+#### 05-docker.md
+
+Вопросы по docker (контейнеры, образы)  

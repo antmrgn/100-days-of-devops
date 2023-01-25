@@ -39,3 +39,34 @@ yc managed-kubernetes cluster start my-first-k8s-cluster
 
 # delete k8s cluster 
 yc managed-kubernetes cluster delete my-first-k8s-cluster
+
+
+
+########################
+
+# connect to cluster
+# get cluster ID and set variable
+yc managed-kubernetes cluster list
+CLUSTER_ID=catjkitc4fhc5gao94h7
+
+# connect via external ip address
+yc managed-kubernetes cluster \
+  get-credentials $CLUSTER_ID \
+  --external
+
+# get external ip of k8s cluster
+yc managed-kubernetes cluster get --id $CLUSTER_ID \
+  --format json | \
+  jq -r .master.endpoints.external_v4_endpoint
+
+# get info via kubectl
+kubectl cluster-info
+
+# get running pods list
+kubectl get pods --all-namespaces
+
+# get nodes list
+kubectl get nodes
+
+# run hello-minikube container
+kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080

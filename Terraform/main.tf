@@ -12,6 +12,12 @@ provider "yandex" {
   zone = "ru-central1-a"
 }
 
+
+locals {
+  k8s_version = "1.22" # Set the Kubernetes version.
+}
+
+
 // VM1
 resource "yandex_compute_instance" "vm-by-terraform-1-centos" {
   name = "vm-by-terraform-1-centos"
@@ -146,41 +152,86 @@ resource "yandex_storage_bucket" "test" {
 
 // create k8s cluster
 resource "yandex_kubernetes_cluster" "k8s-cluster-via-terraform" {
- network_id = yandex_vpc_network.network-by-terraform.id
- master {
-   zonal {
-     zone      = yandex_vpc_subnet.subnet-by-terraform.zone
-     subnet_id = yandex_vpc_subnet.subnet-by-terraform.id
-   }
- }
- service_account_id      = yandex_iam_service_account.sa-k8s.id
- node_service_account_id = yandex_iam_service_account.sa-k8s.id
-   depends_on = [
-     yandex_resourcemanager_folder_iam_binding.editor,
-     yandex_resourcemanager_folder_iam_binding.images-puller
-   ]
+  network_id = yandex_vpc_network.network-by-terraform.id
+  master {
+    zonal {
+      zone      = yandex_vpc_subnet.subnet-by-terraform.zone
+      subnet_id = yandex_vpc_subnet.subnet-by-terraform.id
+    }
+    public_ip = true
+    version   = local.k8s_version
+  }
+  service_account_id      = yandex_iam_service_account.sa-k8s.id
+  node_service_account_id = yandex_iam_service_account.sa-k8s.id
+  depends_on = [
+    yandex_resourcemanager_folder_iam_binding.editor,
+    yandex_resourcemanager_folder_iam_binding.images-puller
+  ]
 }
 
 // create account for k8s cluster
 resource "yandex_iam_service_account" "sa-k8s" {
- name        = "sa-k8s"
- description = "sa for k8s cluster"
+  name        = "sa-k8s"
+  description = "sa for k8s cluster"
 }
 
 // add role to sa
 resource "yandex_resourcemanager_folder_iam_binding" "editor" {
- folder_id = "b1g842fiiub76pl0ubak"
- role      = "editor"
- members   = [
-   "serviceAccount:${yandex_iam_service_account.sa-k8s.id}"
- ]
+  folder_id = "b1g842fiiub76pl0ubak"
+  role      = "editor"
+  members = [
+    "serviceAccount:${yandex_iam_service_account.sa-k8s.id}"
+  ]
 }
 
 // add role to sa
 resource "yandex_resourcemanager_folder_iam_binding" "images-puller" {
- folder_id = "b1g842fiiub76pl0ubak"
- role      = "container-registry.images.puller"
- members   = [
-   "serviceAccount:${yandex_iam_service_account.sa-k8s.id}"
- ]
+  folder_id = "b1g842fiiub76pl0ubak"
+  role      = "container-registry.images.puller"
+  members = [
+    "serviceAccount:${yandex_iam_service_account.sa-k8s.id}"
+  ]
+}
+
+// add node group to k8s cluster
+resource "yandex_kubernetes_node_group" "k8s-node-group-by-terraform" {
+  description = "Node group for Managed Service for Kubernetes cluster"
+  name        = "k8s-node-group"
+  cluster_id  = yandex_kubernetes_cluster.k8s-cluster-via-terraform.id
+  version     = local.k8s_version
+
+  scale_policy {
+    fixed_scale {
+      size = 1 # Number of hosts
+    }
+  }
+
+  allocation_policy {
+    location {
+      zone = "ru-central1-a"
+    }
+  }
+
+  instance_template {
+    platform_id = "standard-v2"
+
+    network_interface {
+      nat        = true
+      subnet_ids = [yandex_vpc_subnet.subnet-by-terraform.id]
+    }
+
+    resources {
+      memory = 2 # RAM quantity in GB
+      cores  = 2 # Number of CPU cores
+    }
+
+    boot_disk {
+      type = "network-hdd"
+      size = 64 # Disk size in GB
+    }
+
+    scheduling_policy {
+      preemptible = true
+    }
+  }
 }
