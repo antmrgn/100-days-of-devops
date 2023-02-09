@@ -29,7 +29,7 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
 
 
 # TODO: define the 'add_missing_stops()' function
-def add_missing_stops(*args, **kwargs):
+def add_missing_stops(args, **kwargs):
     """Add missing stops to route dict.
 
     :param route: dict - the dict of routing information.
@@ -39,10 +39,8 @@ def add_missing_stops(*args, **kwargs):
     stop_list=[]
     for key, value in kwargs.items():
         stop_list.extend({value})
-    
-    list_missing_stops = args
-    
-    return {stops: stop_list}
+    stops_list = {"stops" : stop_list}
+    return {**args, **stops_list}
 
 
 
@@ -64,5 +62,5 @@ def fix_wagon_depot(wagons_rows):
     :param wagons_rows: list[list[tuple]] - the list of rows of wagons.
     :return: list[list[tuple]] - list of rows of wagons.
     """
-    list = zip(*wagons_rows)
-    return list
+#    list = zip(*wagons_rows)
+    return list(zip(*wagons_rows))
