@@ -132,4 +132,5 @@ def singleton_ingredients(dishes, intersection):
     The function should return a `set` of ingredients that only appear in a single dish.
     """
 
-    pass
+#    set_dishes = set(dishes)
+    return compile_ingredients(dishes) - intersection
