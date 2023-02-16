@@ -6,7 +6,7 @@ Doing various tasks to improve myself knowledge and experience in DevOps
  - Start from 11 Jan 2023
  - Stop at 28 Apr 2023  
 
-Days off (2): 24 Jan 2023, 01 Feb 2023, 
+Days off (3): 24 Jan 2023, 01 Feb 2023, 15 Feb 2023
 
 ## What I want to do
 
