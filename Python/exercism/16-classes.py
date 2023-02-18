@@ -17,13 +17,13 @@ class Alien:
     teleport(new_x_coordinate, new_y_coordinate): Move Alien object to new coordinates.
     collision_detection(other): Implementation TBD.
     """
-    
+    total_aliens_created = 0
 
     def __init__(self, x_coordinate, y_coordinate):
         self.x_coordinate = x_coordinate
         self.y_coordinate = y_coordinate
         self.health = 3
-        self.total_aliens_created = Alien.total_aliens_created + 1
+        Alien.total_aliens_created += 1
 
     def hit(self):
         self.health = self.health - 1
@@ -37,27 +37,18 @@ class Alien:
         self.x_coordinate = x_coordinate
         self.y_coordinate = y_coordinate
     
-    def collision_detection():
+    def collision_detection(x_coordinate, y_coordinate):
         pass
 
 #TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
 
-    def new_aliens_collections():
-        pass
+def new_aliens_collection(alien_start_positions):
+    for item in alien_start_positions:
+        return (item[0], item [1])
+#    for item in positions:
+#        Alien.teleport(Alien, item[0], item[1])
 
 
-alien = Alien(2,0)
-print(alien.x_coordinate)
-print(alien.y_coordinate)
-print(alien.health)
-alien.hit()
-alien.hit()
-
-print(alien.health)
-print(alien.is_alive())
-alien.teleport(5, -4)
-print(alien.x_coordinate)
-print(alien.y_coordinate)
 print("------------------------------")
 alien_one = Alien(5, 1)
 print(alien_one.total_aliens_created)
@@ -67,3 +58,12 @@ print(alien_two.total_aliens_created)
 print(Alien.total_aliens_created)
 alien_three = Alien(3, 0)
 print(Alien.total_aliens_created)
+print("------------------------------")
+alien_start_positions = [(4, 7), (-1, 0)]
+print(alien_start_positions)
+aliens = new_aliens_collection(alien_start_positions)
+print(aliens)
+for alien in aliens:
+    print(alien)
+    print(alien.x_coordinate, alien.y_coordinate)
+
