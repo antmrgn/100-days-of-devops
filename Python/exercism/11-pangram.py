@@ -1,4 +1,5 @@
 def is_pangram(sentence):
-    return sentence[4]
-
-print(is_pangram("The quick brown fox jumps over the lazy dog."))
+    '''Determine if a sentence is a pangram'''
+    sentence = set(sentence.lower())
+    check = set(map(chr, range(97, 123)))
+    return check.issubset(sentence)
