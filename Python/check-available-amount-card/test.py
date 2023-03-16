@@ -12,7 +12,7 @@ from urllib.request import urlopen
 import json
 # store the URL in url as 
 # parameter for urlopen
-url = "https://meal.gift-cards.ru/api/1/virtual-cards/+7927012345/1234"
+url = "https://meal.gift-cards.ru/api/1/virtual-cards/+79270123456/0123"
   
 # store the response of URL
 response = urlopen(url)
@@ -22,4 +22,4 @@ response = urlopen(url)
 data_json = json.loads(response.read())
   
 # print the json response
-print(data_json['data.balance.availableAmount'])
+print(data_json['data']['balance']['availableAmount'])
