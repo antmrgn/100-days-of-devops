@@ -9,6 +9,10 @@ https://meal.gift-cards.ru/api/1/virtual-cards/+79270123456/1234
 и получить в ответ json, содержащий информацию о карте, в том числе остаток средств. 
 Для получения остатка средств нужно вытащить информацию из data.balance.availableAmount
 
-#### Сборка в контейнер
+#### Сборка образа
 
 docker build -t sup:latest ./
+
+#### Запуск в контейнере
+
+docker run --restart=always -d sup:latest
