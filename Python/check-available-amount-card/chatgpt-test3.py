@@ -8,14 +8,25 @@ bot = telebot.TeleBot("<BOT-TOKEN>")
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.chat.id, "Привет, введите номер телефона и четыре последние цифры карты (разделяйте пробелом)")
+    bot.send_message(message.chat.id, "Привет, этот бот поможет тебе узнать информацию по твоей карте SUP \nВведи свой номер телефона в формате +7900123456")
 
 # Обработчик сообщения от пользователя
 @bot.message_handler(func=lambda message: True)
-def get_card_balance(message):
+def get_phone_number(message):
     # Разделяем номер телефона и четыре последние цифры карты
-    phone, card_number = message.text.split()
+    phone = message
+    bot.register_next_step_handler(message, get_card_number)
 
+def get_card_number(message):
+    card_number = message
+
+#def phone(update, context):
+#    phone_number = update.message.text
+#    context.user_data["phone"] = phone_number
+#    message = "Введите последние 4 цифры номера карты"
+#    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+#    return "CARD"
+#
     # Формируем запрос к API
     url = f"https://meal.gift-cards.ru/api/1/virtual-cards/{phone}/{card_number}"
 #    headers = {
