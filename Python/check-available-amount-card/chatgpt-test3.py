@@ -26,7 +26,7 @@ def get_card_number(message):
 #    message = "Введите последние 4 цифры номера карты"
 #    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 #    return "CARD"
-#
+# comment
     # Формируем запрос к API
     url = f"https://meal.gift-cards.ru/api/1/virtual-cards/{phone}/{card_number}"
 #    headers = {
