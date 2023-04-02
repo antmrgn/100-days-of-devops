@@ -1,10 +1,14 @@
 #mylist = []
 def flatten(iterable):
     mylist = []
-    for i in iterable:
-        print("flatten for")
-        print(i)
-        mylist.append(flatten2(i))
+    # for i in iterable:
+    #     print("flatten for")
+    #     print(i)
+    #     mylist.append(flatten2(i))
+    # return mylist
+    for group in iterable:
+        for name in group:
+            mylist.append(group)
     return mylist
 
 def flatten2(item):
