@@ -1,43 +1,22 @@
 #mylist = []
 def flatten(iterable):
     mylist = []
-    # for i in iterable:
-    #     print("flatten for")
-    #     print(i)
-    #     mylist.append(flatten2(i))
-    # return mylist
-    for group in iterable:
-        for name in group:
-            mylist.append(group)
-    return mylist
-
-def flatten2(item):
-    if type(item) is not list:
-        print("flatten2 if")
-        print(item)
-        return item
-    else:
-        print("flatten2 else")
-        print(item)
-        return flatten3(item)
-    
-def flatten3(item):
-    temp_list = []
-    print("flatten3")
-    print(item)
-    for i in item:
-        print("flatten3 for")
+    while iterable:
+        i = iterable.pop(0)
+        print("while")
         print(i)
-        if type(i) is not list:
-            print("flatten3 if")
+        if type(i) == list:
+            print("if")
             print(i)
-            temp_list.append(i)
+            iterable.extend(i)
         else:
-            print("flatten3 else")
-            print(i)
-            flatten3(i)    
-    return temp_list
-# 
+            if i is not None:
+                print("if2")
+                print(i)
+                mylist.append(i)
+#    mylist.sort()
+
+    return mylist
 
 
 print(flatten([1, [2, [[3]], [4, [[5]]], 6, 7], 8]))
@@ -78,3 +57,43 @@ print(flatten([1, [2, [[3]], [4, [[5]]], 6, 7], 8]))
 #                 print("else4")
 #                 print(i)
 #                 return i
+
+
+    # for i in iterable:
+    #     print("flatten for")
+    #     print(i)
+    #     mylist.append(flatten2(i))
+    # return mylist
+#    for group in iterable:
+#        for name in group:
+#            mylist.append(group)
+#     flatlist = sum(iterable, [])
+#     return flatlist
+
+# def flatten2(item):
+#     if type(item) is not list:
+#         print("flatten2 if")
+#         print(item)
+#         return item
+#     else:
+#         print("flatten2 else")
+#         print(item)
+#         return flatten3(item)
+    
+# def flatten3(item):
+#     temp_list = []
+#     print("flatten3")
+#     print(item)
+#     for i in item:
+#         print("flatten3 for")
+#         print(i)
+#         if type(i) is not list:
+#             print("flatten3 if")
+#             print(i)
+#             temp_list.append(i)
+#         else:
+#             print("flatten3 else")
+#             print(i)
+#             flatten3(i)    
+#     return temp_list
+# # 
