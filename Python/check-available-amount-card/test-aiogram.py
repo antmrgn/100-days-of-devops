@@ -4,6 +4,7 @@ import logging
 from aiogram import Bot, Dispatcher, Router, types
 from aiogram.filters import Command
 from aiogram.types import Message
+from config_reader import config
 
 # Bot token can be obtained via https://t.me/BotFahter
 TOKEN = "my-token"
