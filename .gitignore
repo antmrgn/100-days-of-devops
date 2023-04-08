@@ -2,3 +2,4 @@ Terraform/meta.txt
 Python/check-available-amount-card/SUP_check_balance-test.py
 Python/check-available-amount-card/test.py
 Python/check-available-amount-card/.env
+Python/check-available-amount-card/__pycache__

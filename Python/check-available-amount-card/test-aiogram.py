@@ -25,20 +25,25 @@ async def process_help_command(message: types.Message):
 async def echo_message(message: types.Message):
 #    await message.answer("message")
 #    await message.answer(message.text)
-                         
-    phone, card_number = message.text.split()
+    if "+7" in message.text and len(message.text) == 17:
+        phone, card_number = message.text.split()
 
-    url = f"https://meal.gift-cards.ru/api/1/virtual-cards/{phone}/{card_number}"
+        url = f"https://meal.gift-cards.ru/api/1/virtual-cards/{phone}/{card_number}"
 
-    response = requests.get(url).json()
- 
-    # Извлекаем данные баланса карты
-    balance = response['data']['balance']['availableAmount']
+        response = requests.get(url).json()
+        status = response['status']
+        if status == "OK":
+            # Извлекаем данные баланса карты
+            balance = response['data']['balance']['availableAmount']
 
-    # Отправляем пользователю сообщение с балансом карты
-    await message.answer("Баланс карты:") 
-    await message.answer(balance)   
-
+            # Отправляем пользователю сообщение с балансом карты
+            await message.answer("Баланс карты:") 
+            await message.answer(balance)
+        else:
+            await message.answer("Не удалось получить информацию. Проверьте правильность ввода номера и карты")
+            await message.answer(status)
+    else:
+        await message.answer("Неверный ввод. Повторите") 
 
 
 # Запуск процесса поллинга новых апдейтов
