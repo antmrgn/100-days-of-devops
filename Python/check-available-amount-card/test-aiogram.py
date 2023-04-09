@@ -25,7 +25,7 @@ async def process_help_command(message: types.Message):
 async def echo_message(message: types.Message):
 #    await message.answer("message")
 #    await message.answer(message.text)
-    if "+7" in message.text and len(message.text) == 17:
+    if "+7" in message.text and len(message.text) == 17 and " " in message.text:
         phone, card_number = message.text.split()
 
         url = f"https://meal.gift-cards.ru/api/1/virtual-cards/{phone}/{card_number}"
