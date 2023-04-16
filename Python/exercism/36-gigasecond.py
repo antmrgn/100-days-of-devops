@@ -1,33 +1,13 @@
-import time
-import datetime 
+'''
+Your task is to determine the date and time one gigasecond after a certain date.
 
-#from datetime import date
+A gigasecond is one thousand million seconds. That is a one with nine zeros after it.
 
-#from datetime import datetime
+If you were born on January 24th, 2015 at 22:00 (10:00:00pm), then you would be a gigasecond old on October 2nd, 2046 at 23:46:40 (11:46:40pm).
+'''
 
-gigasecond = 1000000000
+from datetime import timedelta
+
 def add(moment):
-    unix = time.mktime(moment.timetuple())
-    res = int(unix + gigasecond)
-    return datetime.datetime.fromtimestamp(res)
-
-#moment = (2011, 4, 25, 0, 0)
-#moment = datetime.datetime(2011, 4, 25, 0, 0)
-#moment = datetime.datetime(2011, 4, 25, 0, 0).timestamp()
-#unix = time.mktime(moment.timetuple())
-#print(unix)
-#res = int(unix + gigasecond)
-#print(res)
-
-#from datetime import datetime
-#nice = datetime.utcfromtimestamp(res)
-#nice = datetime.datetime.fromtimestamp(res)
-#nice = time.mktime(res.timetuple())
-#print(nice)
-
-#(dt).total_seconds()
-
-#today = date.today()
-#print(today)
-
-#print(add((2011, 4, 25, 0, 0)))
+    res = moment + timedelta(seconds=1000000000)
+    return res
