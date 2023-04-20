@@ -25,3 +25,4 @@ Deploy containers in YC k8s
 #### Python
 
 Create app for check available amount in https://meal.gift-cards.ru/balance via telegram bot
+App is ready 20 Apr 2023

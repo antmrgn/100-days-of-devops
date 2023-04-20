@@ -16,3 +16,6 @@ docker build -t sup:latest ./
 #### Запуск в контейнере
 
 docker run --restart=always -d sup:latest
+
+### Как это выглядит
+[Скриншот диалога с ботом](./check-balance-bot.PNG)

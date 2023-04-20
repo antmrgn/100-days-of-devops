@@ -13,7 +13,7 @@ RUN pip install asyncio requests pydantic[dotenv]
 WORKDIR /usr/app/src
 
 #to COPY the remote file at working directory in container
-COPY test-aiogram.py ./
+COPY check-balance-bot.py ./
 COPY config_reader.py ./
 COPY .env ./
 # Now the structure looks like this '/usr/app/src/test.py'
@@ -22,4 +22,4 @@ COPY .env ./
 #CMD instruction should be used to run the software
 #contained by your image, along with any arguments.
 
-CMD [ "python", "./test-aiogram.py"]
+CMD [ "python", "./check-balance-bot.py"]
